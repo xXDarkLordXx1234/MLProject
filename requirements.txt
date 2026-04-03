@@ -2,4 +2,7 @@ pandas
 seaborn
 setuptools
 matplotlib
+scikit-learn
+xgboost
+catboost
 -e .
