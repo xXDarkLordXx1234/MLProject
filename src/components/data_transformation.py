@@ -23,7 +23,7 @@ class DataTransformation:
         try:
             logging.info("Data Transformation Pipeline Started")
             num_col = ["writing_score","reading_score"]
-            categ_col = ["gender","race_ethnicity","parental_level_of_education	","lunch","test_preparation_course"]
+            categ_col = ["gender","race_ethnicity","parental_level_of_education","lunch","test_preparation_course"]
             
             num_pipeline = Pipeline(
                 steps=[
@@ -36,7 +36,7 @@ class DataTransformation:
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
                     ("one_hot_encoder",OneHotEncoder()),
-                    ("scalar",StandardScaler())
+                    ("scalar",StandardScaler(with_mean=F))
                 ]
             )
             logging.info(f"Categorical Columns: {categ_col}")
@@ -62,9 +62,9 @@ class DataTransformation:
             preprocessor_obj = self.get_data_transformer()
             target_col = "math_score"
             num_col = ["writing_score","reading_score"]
-            input_feature_train_df = train_df.drop(columns=[target_col],axis=1)
+            input_feature_train_df = train_df.drop(columns=[target_col])
             target_feature_train_df = train_df[target_col]
-            input_feature_test_df = test_df.drop(columns=[target_col],axis=1)
+            input_feature_test_df = test_df.drop(columns=[target_col])
             target_feature_test_df = test_df[target_col]
             
             logging.info("Preprocessing training and testing dataframes")
