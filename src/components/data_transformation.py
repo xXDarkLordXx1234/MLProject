@@ -36,7 +36,7 @@ class DataTransformation:
                 steps=[
                     ("imputer", SimpleImputer(strategy="most_frequent")),
                     ("one_hot_encoder",OneHotEncoder()),
-                    ("scalar",StandardScaler(with_mean=F))
+                    ("scalar",StandardScaler(with_mean=False))
                 ]
             )
             logging.info(f"Categorical Columns: {categ_col}")
